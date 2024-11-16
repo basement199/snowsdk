@@ -101,7 +101,7 @@ func NewUserClient(admin string, password string, instance string) *UserClient {
 	}
 }
 
-// GetUserWithID  - get user by Okta ID
+// GetUserName search for user by user_name
 func (s *UserClient) GetUserName(userName string) (SnowUser, error) {
 
 	u := SnowUser{}
@@ -136,3 +136,40 @@ func (s *UserClient) GetUserName(userName string) (SnowUser, error) {
 	return u, err
 
 }
+
+// GetEmployeeNumber search for user by employee_number
+func (s *UserClient) GetEmployeeNumber(employeeNumber string) (SnowUser, error) {
+
+	u := SnowUser{}
+
+	url := s.Instance + "/api/now/table/sys_user?sysparm_query=employee_number=" + employeeNumber
+
+	// Create a new HTTP request
+	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		fmt.Println("Error creating request:", err)
+		return u, err
+	}
+
+	// Set the basic authentication header
+	req.SetBasicAuth(s.Admin, s.AdminPassword)
+
+	// Make the HTTP request
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		fmt.Println("Error making request:", err)
+		return u, err
+	}
+	defer resp.Body.Close()
+
+	err = json.NewDecoder(resp.Body).Decode(&u)
+
+	if err != nil {
+		return u, err
+	}
+
+	return u, err
+
+}
+
