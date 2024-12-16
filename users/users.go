@@ -4,7 +4,9 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
+	"os"
 )
 
 type SnowUser struct {
@@ -239,6 +241,11 @@ func (s *UserClient) GetEmployeeNumber(employeeNumber string) (SnowUser, error) 
 		return u, err
 	}
 	defer resp.Body.Close()
+
+	_, err = io.Copy(os.Stdout, resp.Body)
+	if err != nil {
+	fmt.Println(err)
+	}
 
 	err = json.NewDecoder(resp.Body).Decode(&u)
 
