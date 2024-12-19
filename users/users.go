@@ -93,6 +93,7 @@ type AddSnowUser struct {
 	FirstName      string `json:"first_name"`
 	LastName       string `json:"last_name"`
 	Email          string `json:"email"`
+	Manager        string `json:"manager"`
 	EmployeeNumber string `json:"employee_number"`
 	Password       string `json:"password"`
 }
