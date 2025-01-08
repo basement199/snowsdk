@@ -191,10 +191,10 @@ type SnowUser struct {
 		SysTags                     string `json:"sys_tags"`
 		TimeZone                    string `json:"time_zone"`
 		ULocalUser                  string `json:"u_local_user"`
-		Schedule                    struct {
-			Link  string `json:"link"`
-			Value string `json:"value"`
-		} `json:"schedule"`
+	//	Schedule                    struct {
+	//		Link  string `json:"link"`
+	//		Value string `json:"value"`
+	//	} `json:"schedule"`
 		UHrUserLocation struct {
 			Link  string `json:"link"`
 			Value string `json:"value"`
