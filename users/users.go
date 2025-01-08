@@ -345,7 +345,7 @@ func (s *UserClient) GetUPN(upn string) (SnowUser, error) {
 
 	u := SnowUser{}
 
-	url := s.Instance + "/api/now/table/sys_user?sysparm_query=userprincipalname=" + upn
+	url := s.Instance + "/api/now/table/sys_user?sysparm_query=u_userprincipalname=" + upn
 
 	// Create a new HTTP request
 	req, err := http.NewRequest("GET", url, nil)
