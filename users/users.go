@@ -149,6 +149,34 @@ func (c *Company) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+type Manager struct {
+	Link  string
+	Value string
+	Raw   string // Stores the raw string if `manager` is not an object
+}
+
+func (m *Manager) UnmarshalJSON(data []byte) error {
+	// Try to unmarshal as an object
+	type ManagerObj struct {
+		Link  string `json:"link"`
+		Value string `json:"value"`
+	}
+	var obj ManagerObj
+	if err := json.Unmarshal(data, &obj); err == nil {
+		m.Link = obj.Link
+		m.Value = obj.Value
+		return nil
+	}
+
+	// Otherwise, assume it's a string
+	var raw string
+	if err := json.Unmarshal(data, &raw); err != nil {
+		return err
+	}
+	m.Raw = raw
+	return nil
+}
+
 type SnowUser struct {
 	Result []struct {
 		CalendarIntegration           string             `json:"calendar_integration"`
@@ -163,7 +191,6 @@ type SnowUser struct {
 		State                         string             `json:"state"`
 		Vip                           string             `json:"vip"`
 		SysCreatedBy                  string             `json:"sys_created_by"`
-		UContractorCompany            string             `json:"u_contractor_company"`
 		Zip                           string             `json:"zip"`
 		UJobFunction                  string             `json:"u_job_function"`
 		TimeFormat                    string             `json:"time_format"`
@@ -203,38 +230,35 @@ type SnowUser struct {
 		Email                         string             `json:"email"`
 		URegion                       string             `json:"u_region"`
 		UHrForHr                      string             `json:"u_hr_for_hr"`
-		Manager                       struct {
-			Link  string `json:"link"`
-			Value string `json:"value"`
-		} `json:"manager"`
-		LockedOut                  string `json:"locked_out"`
-		UAuthorityLevel            string `json:"u_authority_level"`
-		LastName                   string `json:"last_name"`
-		Photo                      string `json:"photo"`
-		UUpdateSources             string `json:"u_update_sources"`
-		Avatar                     string `json:"avatar"`
-		UBadgeExpiryDate           string `json:"u_badge_expiry_date"`
-		URoom                      string `json:"u_room"`
-		UAccNvrExpires             string `json:"u_acc_nvr_expires"`
-		CorrelationID              string `json:"correlation_id"`
-		DateFormat                 string `json:"date_format"`
-		UBusinessUnit              string `json:"u_business_unit"`
-		Country                    string `json:"country"`
-		UEmployeeClass             string `json:"u_employee_class"`
-		LastLoginTime              string `json:"last_login_time"`
-		UDivision                  string `json:"u_division"`
-		XPdIntegrationPagerdutyID  string `json:"x_pd_integration_pagerduty_id"`
-		ULastDayWorked             string `json:"u_last_day_worked"`
-		Source                     string `json:"source"`
-		UPreferredPronoun          string `json:"u_preferred_pronoun"`
-		UServiceAcct               string `json:"u_service_acct"`
-		UPersonalMobilePhone       string `json:"u_personal_mobile_phone"`
-		XMobiCExternalUserLastName string `json:"x_mobi_c_external_user_last_name"`
-		WebServiceAccessOnly       string `json:"web_service_access_only"`
-		UExtEmplID                 string `json:"u_ext_empl_id"`
-		UNotifyVip                 string `json:"u_notify_vip"`
-		SysCreatedOn               string `json:"sys_created_on"`
-		SysDomain                  struct {
+		Manager                       Manager            `json:"manager"`
+		LockedOut                     string             `json:"locked_out"`
+		UAuthorityLevel               string             `json:"u_authority_level"`
+		LastName                      string             `json:"last_name"`
+		Photo                         string             `json:"photo"`
+		UUpdateSources                string             `json:"u_update_sources"`
+		Avatar                        string             `json:"avatar"`
+		UBadgeExpiryDate              string             `json:"u_badge_expiry_date"`
+		URoom                         string             `json:"u_room"`
+		UAccNvrExpires                string             `json:"u_acc_nvr_expires"`
+		CorrelationID                 string             `json:"correlation_id"`
+		DateFormat                    string             `json:"date_format"`
+		UBusinessUnit                 string             `json:"u_business_unit"`
+		Country                       string             `json:"country"`
+		UEmployeeClass                string             `json:"u_employee_class"`
+		LastLoginTime                 string             `json:"last_login_time"`
+		UDivision                     string             `json:"u_division"`
+		XPdIntegrationPagerdutyID     string             `json:"x_pd_integration_pagerduty_id"`
+		ULastDayWorked                string             `json:"u_last_day_worked"`
+		Source                        string             `json:"source"`
+		UPreferredPronoun             string             `json:"u_preferred_pronoun"`
+		UServiceAcct                  string             `json:"u_service_acct"`
+		UPersonalMobilePhone          string             `json:"u_personal_mobile_phone"`
+		XMobiCExternalUserLastName    string             `json:"x_mobi_c_external_user_last_name"`
+		WebServiceAccessOnly          string             `json:"web_service_access_only"`
+		UExtEmplID                    string             `json:"u_ext_empl_id"`
+		UNotifyVip                    string             `json:"u_notify_vip"`
+		SysCreatedOn                  string             `json:"sys_created_on"`
+		SysDomain                     struct {
 			Link  string `json:"link"`
 			Value string `json:"value"`
 		} `json:"sys_domain"`
