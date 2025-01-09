@@ -3,9 +3,7 @@ package users
 import (
 	"encoding/json"
 	"fmt"
-	"io"
 	"net/http"
-	"os"
 )
 
 type UHrBusinessPartner struct {
@@ -329,8 +327,7 @@ func NewUserClient(admin string, password string, instance string) *UserClient {
 	}
 }
 
-
-//GetUserId search for user by SNOW  object ID
+// GetUserId search for user by SNOW  object ID
 func (s *UserClient) GetUserId(userId string) (SnowUser, error) {
 
 	u := SnowUser{}
@@ -463,11 +460,6 @@ func (s *UserClient) GetEmployeeNumber(employeeNumber string) (SnowUser, error) 
 		return u, err
 	}
 	defer resp.Body.Close()
-
-	_, err = io.Copy(os.Stdout, resp.Body)
-	if err != nil {
-		fmt.Println(err)
-	}
 
 	err = json.NewDecoder(resp.Body).Decode(&u)
 
