@@ -329,12 +329,13 @@ func NewUserClient(admin string, password string, instance string) *UserClient {
 	}
 }
 
+
 //GetUserId search for user by SNOW  object ID
 func (s *UserClient) GetUserId(userId string) (SnowUser, error) {
 
 	u := SnowUser{}
 
-	url := s.Instance + "/api/now/table/sys_user/" + userId
+	url := s.Instance + "/api/now/table/sys_user?sysparm_query=sys_id=" + userId
 
 	// Create a new HTTP request
 	req, err := http.NewRequest("GET", url, nil)
