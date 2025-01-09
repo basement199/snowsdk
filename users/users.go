@@ -9,6 +9,34 @@ import (
 	"os"
 )
 
+type Building struct {
+	Link  string
+	Value string
+	Raw   string // Stores the raw string if `building` is not an object
+}
+
+func (b *Building) UnmarshalJSON(data []byte) error {
+	// Try to unmarshal as an object
+	type BuildingObj struct {
+		Link  string `json:"link"`
+		Value string `json:"value"`
+	}
+	var obj BuildingObj
+	if err := json.Unmarshal(data, &obj); err == nil {
+		b.Link = obj.Link
+		b.Value = obj.Value
+		return nil
+	}
+
+	// Otherwise, assume it's a string
+	var raw string
+	if err := json.Unmarshal(data, &raw); err != nil {
+		return err
+	}
+	b.Raw = raw
+	return nil
+}
+
 type SnowUser struct {
 	Result []struct {
 		CalendarIntegration string `json:"calendar_integration"`
@@ -18,45 +46,45 @@ type SnowUser struct {
 			Link  string `json:"link"`
 			Value string `json:"value"`
 		} `json:"x_mobi_p_team"`
-		SysUpdatedOn                  string `json:"sys_updated_on"`
-		Building                      string `json:"building"`
-		UMailCounter                  string `json:"u_mail_counter"`
-		SsoSource                     string `json:"sso_source"`
-		UFullDomain                   string `json:"u_full_domain"`
-		UObjectsid                    string `json:"u_objectsid"`
-		State                         string `json:"state"`
-		Vip                           string `json:"vip"`
-		SysCreatedBy                  string `json:"sys_created_by"`
-		UContractorCompany            string `json:"u_contractor_company"`
-		Zip                           string `json:"zip"`
-		UJobFunction                  string `json:"u_job_function"`
-		TimeFormat                    string `json:"time_format"`
-		UStageDn                      string `json:"u_stage_dn"`
-		LastLogin                     string `json:"last_login"`
-		USubdivision                  string `json:"u_subdivision"`
-		Active                        string `json:"active"`
-		UCcbCostCenter                string `json:"u_ccb_cost_center"`
-		UCubicleNo                    string `json:"u_cubicle_no"`
-		UNetworkLoginEnabled          string `json:"u_network_login_enabled"`
-		UItResource                   string `json:"u_it_resource"`
-		ULastLogonTimeException       string `json:"u_last_logon_time_exception"`
-		SysDomainPath                 string `json:"sys_domain_path"`
-		TransactionLog                string `json:"transaction_log"`
-		UOrgMgrs                      string `json:"u_org_mgrs"`
-		Costcenter                    string `json:"costcenter"`
-		Phone                         string `json:"phone"`
-		EmployeeNumber                string `json:"employee_number"`
-		UWorkforceCategory            string `json:"u_workforce_category"`
-		XMobiPWelcomeNotificationSent string `json:"x_mobi_p_welcome_notification_sent"`
-		Gender                        string `json:"gender"`
-		UIgnoreByMigration            string `json:"u_ignore_by_migration"`
-		City                          string `json:"city"`
-		ULocationType                 string `json:"u_location_type"`
-		UserName                      string `json:"user_name"`
-		ULdapLastLoginStamp           string `json:"u_ldap_last_login_stamp"`
-		UDsktpAdminAssigned           string `json:"u_dsktp_admin_assigned"`
-		UResourceStarted              string `json:"u_resource_started"`
-		SysClassName                  string `json:"sys_class_name"`
+		SysUpdatedOn                  string   `json:"sys_updated_on"`
+		Building                      Building `json:"building"`
+		UMailCounter                  string   `json:"u_mail_counter"`
+		SsoSource                     string   `json:"sso_source"`
+		UFullDomain                   string   `json:"u_full_domain"`
+		UObjectsid                    string   `json:"u_objectsid"`
+		State                         string   `json:"state"`
+		Vip                           string   `json:"vip"`
+		SysCreatedBy                  string   `json:"sys_created_by"`
+		UContractorCompany            string   `json:"u_contractor_company"`
+		Zip                           string   `json:"zip"`
+		UJobFunction                  string   `json:"u_job_function"`
+		TimeFormat                    string   `json:"time_format"`
+		UStageDn                      string   `json:"u_stage_dn"`
+		LastLogin                     string   `json:"last_login"`
+		USubdivision                  string   `json:"u_subdivision"`
+		Active                        string   `json:"active"`
+		UCcbCostCenter                string   `json:"u_ccb_cost_center"`
+		UCubicleNo                    string   `json:"u_cubicle_no"`
+		UNetworkLoginEnabled          string   `json:"u_network_login_enabled"`
+		UItResource                   string   `json:"u_it_resource"`
+		ULastLogonTimeException       string   `json:"u_last_logon_time_exception"`
+		SysDomainPath                 string   `json:"sys_domain_path"`
+		TransactionLog                string   `json:"transaction_log"`
+		UOrgMgrs                      string   `json:"u_org_mgrs"`
+		Costcenter                    string   `json:"costcenter"`
+		Phone                         string   `json:"phone"`
+		EmployeeNumber                string   `json:"employee_number"`
+		UWorkforceCategory            string   `json:"u_workforce_category"`
+		XMobiPWelcomeNotificationSent string   `json:"x_mobi_p_welcome_notification_sent"`
+		Gender                        string   `json:"gender"`
+		UIgnoreByMigration            string   `json:"u_ignore_by_migration"`
+		City                          string   `json:"city"`
+		ULocationType                 string   `json:"u_location_type"`
+		UserName                      string   `json:"user_name"`
+		ULdapLastLoginStamp           string   `json:"u_ldap_last_login_stamp"`
+		UDsktpAdminAssigned           string   `json:"u_dsktp_admin_assigned"`
+		UResourceStarted              string   `json:"u_resource_started"`
+		SysClassName                  string   `json:"sys_class_name"`
 		UHrBusinessPartner            struct {
 			Link  string `json:"link"`
 			Value string `json:"value"`
