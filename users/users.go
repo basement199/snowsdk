@@ -18,35 +18,32 @@ type SnowUser struct {
 			Link  string `json:"link"`
 			Value string `json:"value"`
 		} `json:"x_mobi_p_team"`
-		SysUpdatedOn            string `json:"sys_updated_on"`
-		Building                string `json:"building"`
-		UMailCounter            string `json:"u_mail_counter"`
-		SsoSource               string `json:"sso_source"`
-		UFullDomain             string `json:"u_full_domain"`
-		UObjectsid              string `json:"u_objectsid"`
-		State                   string `json:"state"`
-		Vip                     string `json:"vip"`
-		SysCreatedBy            string `json:"sys_created_by"`
-		UContractorCompany      string `json:"u_contractor_company"`
-		Zip                     string `json:"zip"`
-		UJobFunction            string `json:"u_job_function"`
-		TimeFormat              string `json:"time_format"`
-		UStageDn                string `json:"u_stage_dn"`
-		LastLogin               string `json:"last_login"`
-		USubdivision            string `json:"u_subdivision"`
-		Active                  string `json:"active"`
-		UCcbCostCenter          string `json:"u_ccb_cost_center"`
-		UCubicleNo              string `json:"u_cubicle_no"`
-		UNetworkLoginEnabled    string `json:"u_network_login_enabled"`
-		UItResource             string `json:"u_it_resource"`
-		ULastLogonTimeException string `json:"u_last_logon_time_exception"`
-		SysDomainPath           string `json:"sys_domain_path"`
-		TransactionLog          string `json:"transaction_log"`
-		UOrgMgrs                string `json:"u_org_mgrs"`
-		CostCenter              struct {
-			Link  string `json:"link"`
-			Value string `json:"value"`
-		} `json:"cost_center"`
+		SysUpdatedOn                  string `json:"sys_updated_on"`
+		Building                      string `json:"building"`
+		UMailCounter                  string `json:"u_mail_counter"`
+		SsoSource                     string `json:"sso_source"`
+		UFullDomain                   string `json:"u_full_domain"`
+		UObjectsid                    string `json:"u_objectsid"`
+		State                         string `json:"state"`
+		Vip                           string `json:"vip"`
+		SysCreatedBy                  string `json:"sys_created_by"`
+		UContractorCompany            string `json:"u_contractor_company"`
+		Zip                           string `json:"zip"`
+		UJobFunction                  string `json:"u_job_function"`
+		TimeFormat                    string `json:"time_format"`
+		UStageDn                      string `json:"u_stage_dn"`
+		LastLogin                     string `json:"last_login"`
+		USubdivision                  string `json:"u_subdivision"`
+		Active                        string `json:"active"`
+		UCcbCostCenter                string `json:"u_ccb_cost_center"`
+		UCubicleNo                    string `json:"u_cubicle_no"`
+		UNetworkLoginEnabled          string `json:"u_network_login_enabled"`
+		UItResource                   string `json:"u_it_resource"`
+		ULastLogonTimeException       string `json:"u_last_logon_time_exception"`
+		SysDomainPath                 string `json:"sys_domain_path"`
+		TransactionLog                string `json:"transaction_log"`
+		UOrgMgrs                      string `json:"u_org_mgrs"`
+		Costcenter                    string `json:"costcenter"`
 		Phone                         string `json:"phone"`
 		EmployeeNumber                string `json:"employee_number"`
 		UWorkforceCategory            string `json:"u_workforce_category"`
