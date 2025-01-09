@@ -70,10 +70,6 @@ type SnowUser struct {
 		CalendarIntegration string `json:"calendar_integration"`
 		UResourceEnded      string `json:"u_resource_ended"`
 		UUserprincipalname  string `json:"u_userprincipalname"`
-		XMobiPTeam          struct {
-			Link  string `json:"link"`
-			Value string `json:"value"`
-		} `json:"x_mobi_p_team"`
 		SysUpdatedOn                  string             `json:"sys_updated_on"`
 		Building                      Building           `json:"building"`
 		UMailCounter                  string             `json:"u_mail_counter"`
@@ -133,10 +129,6 @@ type SnowUser struct {
 		Photo            string `json:"photo"`
 		UUpdateSources   string `json:"u_update_sources"`
 		Avatar           string `json:"avatar"`
-		UCtaSupportGroup struct {
-			Link  string `json:"link"`
-			Value string `json:"value"`
-		} `json:"u_cta_support_group"`
 		UBadgeExpiryDate           string `json:"u_badge_expiry_date"`
 		URoom                      string `json:"u_room"`
 		UAccNvrExpires             string `json:"u_acc_nvr_expires"`
@@ -155,25 +147,6 @@ type SnowUser struct {
 		UPersonalMobilePhone       string `json:"u_personal_mobile_phone"`
 		XMobiCExternalUserLastName string `json:"x_mobi_c_external_user_last_name"`
 		WebServiceAccessOnly       string `json:"web_service_access_only"`
-		ULevel4                    struct {
-			Link  string `json:"link"`
-			Value string `json:"value"`
-		} `json:"u_level_4"`
-		Notification string `json:"notification"`
-		ULevel3      struct {
-			Link  string `json:"link"`
-			Value string `json:"value"`
-		} `json:"u_level_3"`
-		ULevel2 struct {
-			Link  string `json:"link"`
-			Value string `json:"value"`
-		} `json:"u_level_2"`
-		EnableMultifactorAuthn string `json:"enable_multifactor_authn"`
-		SysUpdatedBy           string `json:"sys_updated_by"`
-		ULevel1                struct {
-			Link  string `json:"link"`
-			Value string `json:"value"`
-		} `json:"u_level_1"`
 		UExtEmplID   string `json:"u_ext_empl_id"`
 		UNotifyVip   string `json:"u_notify_vip"`
 		SysCreatedOn string `json:"sys_created_on"`
@@ -238,10 +211,6 @@ type SnowUser struct {
 		SysTags                     string `json:"sys_tags"`
 		TimeZone                    string `json:"time_zone"`
 		ULocalUser                  string `json:"u_local_user"`
-		//	Schedule                    struct {
-		//		Link  string `json:"link"`
-		//		Value string `json:"value"`
-		//	} `json:"schedule"`
 		UHrUserLocation struct {
 			Link  string `json:"link"`
 			Value string `json:"value"`
