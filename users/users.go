@@ -65,6 +65,90 @@ func (b *Building) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+type Location struct {
+	Link  string
+	Value string
+	Raw   string // Stores the raw string if `location` is not an object
+}
+
+func (l *Location) UnmarshalJSON(data []byte) error {
+	// Try to unmarshal as an object
+	type LocationObj struct {
+		Link  string `json:"link"`
+		Value string `json:"value"`
+	}
+	var obj LocationObj
+	if err := json.Unmarshal(data, &obj); err == nil {
+		l.Link = obj.Link
+		l.Value = obj.Value
+		return nil
+	}
+
+	// Otherwise, assume it's a string
+	var raw string
+	if err := json.Unmarshal(data, &raw); err != nil {
+		return err
+	}
+	l.Raw = raw
+	return nil
+}
+
+type Department struct {
+	Link  string
+	Value string
+	Raw   string // Stores the raw string if `department` is not an object
+}
+
+func (d *Department) UnmarshalJSON(data []byte) error {
+	// Try to unmarshal as an object
+	type DepartmentObj struct {
+		Link  string `json:"link"`
+		Value string `json:"value"`
+	}
+	var obj DepartmentObj
+	if err := json.Unmarshal(data, &obj); err == nil {
+		d.Link = obj.Link
+		d.Value = obj.Value
+		return nil
+	}
+
+	// Otherwise, assume it's a string
+	var raw string
+	if err := json.Unmarshal(data, &raw); err != nil {
+		return err
+	}
+	d.Raw = raw
+	return nil
+}
+
+type Company struct {
+	Link  string
+	Value string
+	Raw   string // Stores the raw string if `company` is not an object
+}
+
+func (c *Company) UnmarshalJSON(data []byte) error {
+	// Try to unmarshal as an object
+	type CompanyObj struct {
+		Link  string `json:"link"`
+		Value string `json:"value"`
+	}
+	var obj CompanyObj
+	if err := json.Unmarshal(data, &obj); err == nil {
+		c.Link = obj.Link
+		c.Value = obj.Value
+		return nil
+	}
+
+	// Otherwise, assume it's a string
+	var raw string
+	if err := json.Unmarshal(data, &raw); err != nil {
+		return err
+	}
+	c.Raw = raw
+	return nil
+}
+
 type SnowUser struct {
 	Result []struct {
 		CalendarIntegration           string             `json:"calendar_integration"`
@@ -154,68 +238,59 @@ type SnowUser struct {
 			Link  string `json:"link"`
 			Value string `json:"value"`
 		} `json:"sys_domain"`
-		UItilUser               string `json:"u_itil_user"`
-		UWfqResourceID          string `json:"u_wfq_resource_id"`
-		UBudgetCodes            string `json:"u_budget_codes"`
-		UPhotoUploaded          string `json:"u_photo_uploaded"`
-		HomePhone               string `json:"home_phone"`
-		UContProjectedEndDate   string `json:"u_cont_projected_end_date"`
-		UEmployeeResourceGroups string `json:"u_employee_resource_groups"`
-		USeniorityDate          string `json:"u_seniority_date"`
-		AverageDailyFte         string `json:"average_daily_fte"`
-		UHrPersonnel            string `json:"u_hr_personnel"`
-		UPimNumber              string `json:"u_pim_number"`
-		UUserid                 string `json:"u_userid"`
-		UHrManagerPath          string `json:"u_hr_manager_path"`
-		Name                    string `json:"name"`
-		XViinBfCustAllCatalog   string `json:"x_viin_bf_cust_all_catalog"`
-		FailedAttempts          string `json:"failed_attempts"`
-		UCompanyDivision        string `json:"u_company_division"`
-		Title                   string `json:"title"`
-		SysID                   string `json:"sys_id"`
-		UPwdNvrExprs            string `json:"u_pwd_nvr_exprs"`
-		FederatedID             string `json:"federated_id"`
-		UDirExclude             string `json:"u_dir_exclude"`
-		InternalIntegrationUser string `json:"internal_integration_user"`
-		MobilePhone             string `json:"mobile_phone"`
-		Street                  string `json:"street"`
-		UAltEmail               string `json:"u_alt_email"`
-		Company                 struct {
-			Link  string `json:"link"`
-			Value string `json:"value"`
-		} `json:"company"`
-		Department struct {
-			Link  string `json:"link"`
-			Value string `json:"value"`
-		} `json:"department"`
-		UType                       string `json:"u_type"`
-		FirstName                   string `json:"first_name"`
-		UPreferredName              string `json:"u_preferred_name"`
-		XMobiCExternalPhoneNumber   string `json:"x_mobi_c_external_phone_number"`
-		Introduction                string `json:"introduction"`
-		PreferredLanguage           string `json:"preferred_language"`
-		UNotes                      string `json:"u_notes"`
-		XMobiCExternalUserFirstName string `json:"x_mobi_c_external_user_first_name"`
-		UCluster                    string `json:"u_cluster"`
-		UNumber                     string `json:"u_number"`
-		UGalName                    string `json:"u_gal_name"`
-		UFloor                      string `json:"u_floor"`
-		SysModCount                 string `json:"sys_mod_count"`
-		UHumanMailbox               string `json:"u_human_mailbox"`
-		ULockOutDate                string `json:"u_lock_out_date"`
-		MiddleName                  string `json:"middle_name"`
-		SysTags                     string `json:"sys_tags"`
-		TimeZone                    string `json:"time_zone"`
-		ULocalUser                  string `json:"u_local_user"`
-		UWorkAtHome                 string `json:"u_work_at_home"`
-		XMobiCMdmUserName           string `json:"x_mobi_c_mdm_user_name"`
-		Location                    struct {
-			Link  string `json:"link"`
-			Value string `json:"value"`
-		} `json:"location"`
-		UNameID             string `json:"u_name_id"`
-		UObjectguid         string `json:"u_objectguid"`
-		UAssignmentCategory string `json:"u_assignment_category"`
+		UItilUser                   string     `json:"u_itil_user"`
+		UWfqResourceID              string     `json:"u_wfq_resource_id"`
+		UBudgetCodes                string     `json:"u_budget_codes"`
+		UPhotoUploaded              string     `json:"u_photo_uploaded"`
+		HomePhone                   string     `json:"home_phone"`
+		UContProjectedEndDate       string     `json:"u_cont_projected_end_date"`
+		UEmployeeResourceGroups     string     `json:"u_employee_resource_groups"`
+		USeniorityDate              string     `json:"u_seniority_date"`
+		AverageDailyFte             string     `json:"average_daily_fte"`
+		UHrPersonnel                string     `json:"u_hr_personnel"`
+		UPimNumber                  string     `json:"u_pim_number"`
+		UUserid                     string     `json:"u_userid"`
+		UHrManagerPath              string     `json:"u_hr_manager_path"`
+		Name                        string     `json:"name"`
+		XViinBfCustAllCatalog       string     `json:"x_viin_bf_cust_all_catalog"`
+		FailedAttempts              string     `json:"failed_attempts"`
+		UCompanyDivision            string     `json:"u_company_division"`
+		Title                       string     `json:"title"`
+		SysID                       string     `json:"sys_id"`
+		UPwdNvrExprs                string     `json:"u_pwd_nvr_exprs"`
+		FederatedID                 string     `json:"federated_id"`
+		UDirExclude                 string     `json:"u_dir_exclude"`
+		InternalIntegrationUser     string     `json:"internal_integration_user"`
+		MobilePhone                 string     `json:"mobile_phone"`
+		Street                      string     `json:"street"`
+		UAltEmail                   string     `json:"u_alt_email"`
+		Company                     Company    `json:"company"`
+		Department                  Department `json:"department"`
+		UType                       string     `json:"u_type"`
+		FirstName                   string     `json:"first_name"`
+		UPreferredName              string     `json:"u_preferred_name"`
+		XMobiCExternalPhoneNumber   string     `json:"x_mobi_c_external_phone_number"`
+		Introduction                string     `json:"introduction"`
+		PreferredLanguage           string     `json:"preferred_language"`
+		UNotes                      string     `json:"u_notes"`
+		XMobiCExternalUserFirstName string     `json:"x_mobi_c_external_user_first_name"`
+		UCluster                    string     `json:"u_cluster"`
+		UNumber                     string     `json:"u_number"`
+		UGalName                    string     `json:"u_gal_name"`
+		UFloor                      string     `json:"u_floor"`
+		SysModCount                 string     `json:"sys_mod_count"`
+		UHumanMailbox               string     `json:"u_human_mailbox"`
+		ULockOutDate                string     `json:"u_lock_out_date"`
+		MiddleName                  string     `json:"middle_name"`
+		SysTags                     string     `json:"sys_tags"`
+		TimeZone                    string     `json:"time_zone"`
+		ULocalUser                  string     `json:"u_local_user"`
+		UWorkAtHome                 string     `json:"u_work_at_home"`
+		XMobiCMdmUserName           string     `json:"x_mobi_c_mdm_user_name"`
+		Location                    Location   `json:"location"`
+		UNameID                     string     `json:"u_name_id"`
+		UObjectguid                 string     `json:"u_objectguid"`
+		UAssignmentCategory         string     `json:"u_assignment_category"`
 	} `json:"result"`
 }
 
