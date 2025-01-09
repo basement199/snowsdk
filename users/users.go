@@ -18,11 +18,8 @@ type SnowUser struct {
 			Link  string `json:"link"`
 			Value string `json:"value"`
 		} `json:"x_mobi_p_team"`
-		SysUpdatedOn string `json:"sys_updated_on"`
-		Building     struct {
-			Link  string `json:"link"`
-			Value string `json:"value"`
-		} `json:"building"`
+		SysUpdatedOn            string `json:"sys_updated_on"`
+		Building                string `json:"building"`
 		UMailCounter            string `json:"u_mail_counter"`
 		SsoSource               string `json:"sso_source"`
 		UFullDomain             string `json:"u_full_domain"`
@@ -191,10 +188,10 @@ type SnowUser struct {
 		SysTags                     string `json:"sys_tags"`
 		TimeZone                    string `json:"time_zone"`
 		ULocalUser                  string `json:"u_local_user"`
-	//	Schedule                    struct {
-	//		Link  string `json:"link"`
-	//		Value string `json:"value"`
-	//	} `json:"schedule"`
+		//	Schedule                    struct {
+		//		Link  string `json:"link"`
+		//		Value string `json:"value"`
+		//	} `json:"schedule"`
 		UHrUserLocation struct {
 			Link  string `json:"link"`
 			Value string `json:"value"`
