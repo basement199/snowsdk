@@ -67,9 +67,9 @@ func (b *Building) UnmarshalJSON(data []byte) error {
 
 type SnowUser struct {
 	Result []struct {
-		CalendarIntegration string `json:"calendar_integration"`
-		UResourceEnded      string `json:"u_resource_ended"`
-		UUserprincipalname  string `json:"u_userprincipalname"`
+		CalendarIntegration           string             `json:"calendar_integration"`
+		UResourceEnded                string             `json:"u_resource_ended"`
+		UUserprincipalname            string             `json:"u_userprincipalname"`
 		SysUpdatedOn                  string             `json:"sys_updated_on"`
 		Building                      Building           `json:"building"`
 		UMailCounter                  string             `json:"u_mail_counter"`
@@ -123,12 +123,12 @@ type SnowUser struct {
 			Link  string `json:"link"`
 			Value string `json:"value"`
 		} `json:"manager"`
-		LockedOut        string `json:"locked_out"`
-		UAuthorityLevel  string `json:"u_authority_level"`
-		LastName         string `json:"last_name"`
-		Photo            string `json:"photo"`
-		UUpdateSources   string `json:"u_update_sources"`
-		Avatar           string `json:"avatar"`
+		LockedOut                  string `json:"locked_out"`
+		UAuthorityLevel            string `json:"u_authority_level"`
+		LastName                   string `json:"last_name"`
+		Photo                      string `json:"photo"`
+		UUpdateSources             string `json:"u_update_sources"`
+		Avatar                     string `json:"avatar"`
 		UBadgeExpiryDate           string `json:"u_badge_expiry_date"`
 		URoom                      string `json:"u_room"`
 		UAccNvrExpires             string `json:"u_acc_nvr_expires"`
@@ -147,10 +147,10 @@ type SnowUser struct {
 		UPersonalMobilePhone       string `json:"u_personal_mobile_phone"`
 		XMobiCExternalUserLastName string `json:"x_mobi_c_external_user_last_name"`
 		WebServiceAccessOnly       string `json:"web_service_access_only"`
-		UExtEmplID   string `json:"u_ext_empl_id"`
-		UNotifyVip   string `json:"u_notify_vip"`
-		SysCreatedOn string `json:"sys_created_on"`
-		SysDomain    struct {
+		UExtEmplID                 string `json:"u_ext_empl_id"`
+		UNotifyVip                 string `json:"u_notify_vip"`
+		SysCreatedOn               string `json:"sys_created_on"`
+		SysDomain                  struct {
 			Link  string `json:"link"`
 			Value string `json:"value"`
 		} `json:"sys_domain"`
@@ -169,10 +169,6 @@ type SnowUser struct {
 		UHrManagerPath          string `json:"u_hr_manager_path"`
 		Name                    string `json:"name"`
 		XViinBfCustAllCatalog   string `json:"x_viin_bf_cust_all_catalog"`
-		HrIntegrationSource     struct {
-			Link  string `json:"link"`
-			Value string `json:"value"`
-		} `json:"hr_integration_source"`
 		FailedAttempts          string `json:"failed_attempts"`
 		UCompanyDivision        string `json:"u_company_division"`
 		Title                   string `json:"title"`
@@ -211,13 +207,9 @@ type SnowUser struct {
 		SysTags                     string `json:"sys_tags"`
 		TimeZone                    string `json:"time_zone"`
 		ULocalUser                  string `json:"u_local_user"`
-		UHrUserLocation struct {
-			Link  string `json:"link"`
-			Value string `json:"value"`
-		} `json:"u_hr_user_location"`
-		UWorkAtHome       string `json:"u_work_at_home"`
-		XMobiCMdmUserName string `json:"x_mobi_c_mdm_user_name"`
-		Location          struct {
+		UWorkAtHome                 string `json:"u_work_at_home"`
+		XMobiCMdmUserName           string `json:"x_mobi_c_mdm_user_name"`
+		Location                    struct {
 			Link  string `json:"link"`
 			Value string `json:"value"`
 		} `json:"location"`
