@@ -432,15 +432,15 @@ func (s *UserClient) GetUPN(upn string) (SnowUser, error) {
 	}
 
 	return u, err
-
 }
 
-// GetEmployeeNumber search for user by employee_number
-func (s *UserClient) GetEmployeeNumber(employeeNumber string) (SnowUser, error) {
+//GetObjectGUID - search for user by objectGUID
+
+func (s *UserClient) GetObjectGUID(objectguid string) (SnowUser, error) {
 
 	u := SnowUser{}
 
-	url := s.Instance + "/api/now/table/sys_user?sysparm_query=employee_number=" + employeeNumber
+	url := s.Instance + "/api/now/table/sys_user?sysparm_query=u_objectguid=" + objectguid
 
 	// Create a new HTTP request
 	req, err := http.NewRequest("GET", url, nil)
