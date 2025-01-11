@@ -570,7 +570,7 @@ func (s *UserClient) GetAll() (SnowUser, error) {
 	defer resp.Body.Close()
 
 	err = json.NewDecoder(resp.Body).Decode(&u)
-
+ß
 	if err != nil {
 		return u, err
 	}
@@ -584,7 +584,7 @@ func (s *UserClient) GetUpdatedUsers(sinceDate string) (SnowUser, error) {
 
 	u := SnowUser{}
 
-	url := s.Instance + "/api/now/table/sys_user?" + "sysparm_fields=UObjectguid,u_userprincipalname,last_name,email,manager&sysparm_query=sys_updated_on>=javascript:gs.dateGenerate(" + "'" + sinceDate + "'" + ",'00:00:00')"
+	url := s.Instance + "/api/now/table/sys_user?" + "sysparm_fields=u_objectguid,u_userprincipalname,last_name,email,manager&sysparm_query=sys_updated_on>=javascript:gs.dateGenerate(" + "'" + sinceDate + "'" + ",'00:00:00')"
 
 	fmt.Println(url)
 
