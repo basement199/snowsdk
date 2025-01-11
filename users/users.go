@@ -570,7 +570,7 @@ func (s *UserClient) GetAll() (SnowUser, error) {
 	defer resp.Body.Close()
 
 	err = json.NewDecoder(resp.Body).Decode(&u)
-ß
+
 	if err != nil {
 		return u, err
 	}
