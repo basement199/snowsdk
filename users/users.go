@@ -578,3 +578,39 @@ func (s *UserClient) GetAll() (SnowUser, error) {
 	return u, err
 
 }
+
+// GetUpdatedUsers - get all users update since a specified date
+func (s *UserClient) GetUpdatedUsers(sinceDate string) (SnowUser, error) {
+
+	u := SnowUser{}
+
+	url := s.Instance+"/api/now/table/sys_user?"+"sysparm_query=sys_updated_on>=javascript:gs.dateGenerate("+"'"+sinceDate+"'"+",'00:00:00')"
+
+	// Create a new HTTP request
+	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		fmt.Println("Error creating request:", err)
+		return u, err
+	}
+ß
+	// Set the basic authentication header
+	req.SetBasicAuth(s.Admin, s.AdminPassword)
+
+	// Make the HTTP request
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		fmt.Println("Error making request:", err)
+		return u, err
+	}
+	defer resp.Body.Close()
+
+	err = json.NewDecoder(resp.Body).Decode(&u)
+
+	if err != nil {
+		return u, err
+	}
+
+	return u, err
+
+}
