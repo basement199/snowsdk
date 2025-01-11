@@ -586,6 +586,10 @@ func (s *UserClient) GetUpdatedUsers(sinceDate string) (SnowUser, error) {
 
 	url := s.Instance+"/api/now/table/sys_user?"+"sysparm_query=sys_updated_on>=javascript:gs.dateGenerate("+"'"+sinceDate+"'"+",'00:00:00')"
 
+	fmt.Println(url)
+
+	fmt.Println(url)
+
 	// Create a new HTTP request
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
@@ -594,7 +598,7 @@ func (s *UserClient) GetUpdatedUsers(sinceDate string) (SnowUser, error) {
 	}
 	
 	// Set the basic authentication header
-	req.SetBasicAuth(s.Admin, s.AdminPassword)
+	req.SetBasicAuth(s.Admin, s.AdminPassword)ß
 
 	// Make the HTTP request
 	client := &http.Client{}
