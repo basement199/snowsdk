@@ -592,7 +592,7 @@ func (s *UserClient) GetUpdatedUsers(sinceDate string) (SnowUser, error) {
 		fmt.Println("Error creating request:", err)
 		return u, err
 	}
-ß
+	
 	// Set the basic authentication header
 	req.SetBasicAuth(s.Admin, s.AdminPassword)
 
