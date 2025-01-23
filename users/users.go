@@ -579,6 +579,45 @@ func (s *UserClient) GetAll() (SnowUser, error) {
 
 }
 
+//
+
+func (s *UserClient) ComboSearch(objectguid, empId string) (SnowUser, error) {
+
+	u := SnowUser{}
+
+	query := "u_objectguid="+objectguid+"^"+"employee_number="+empId
+
+	url := s.Instance + "/api/now/table/sys_user?sysparm_query="+query
+
+	// Create a new HTTP request
+	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		fmt.Println("Error creating request:", err)
+		return u, err
+	}
+	
+	// Set the basic authentication header
+	req.SetBasicAuth(s.Admin, s.AdminPassword)
+
+	// Make the HTTP request
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		fmt.Println("Error making request:", err)
+		return u, err
+	}
+	defer resp.Body.Close()
+
+	err = json.NewDecoder(resp.Body).Decode(&u)
+
+	if err != nil {
+		return u, err
+	}
+
+	return u, err
+
+}
+
 // GetUpdatedUsers - get all users update since a specified date
 func (s *UserClient) GetUpdatedUsers(sinceDate string) (SnowUser, error) {
 
