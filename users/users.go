@@ -585,11 +585,11 @@ func (s *UserClient) ComboSearch(objectguid, empId string) (SnowUser, error) {
 
 	u := SnowUser{}
 
-	query := "u_objectguid="+objectguid+"^"+"employee_number="+empId
+	query := "u_objectguid=" + objectguid + "^" + "employee_number=" + empId
 
 	fmt.Println(query)
 
-	url := s.Instance + "/api/now/table/sys_user?sysparm_query="+query
+	url := s.Instance + "/api/now/table/sys_user?sysparm_query=" + query
 
 	// Create a new HTTP request
 	req, err := http.NewRequest("GET", url, nil)
@@ -597,7 +597,7 @@ func (s *UserClient) ComboSearch(objectguid, empId string) (SnowUser, error) {
 		fmt.Println("Error creating request:", err)
 		return u, err
 	}
-	ß
+
 	// Set the basic authentication header
 	req.SetBasicAuth(s.Admin, s.AdminPassword)
 
