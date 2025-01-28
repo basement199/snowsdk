@@ -586,7 +586,7 @@ func (s *UserClient) ComboSearch(objectguid, empId string) (SnowUser, error) {
 
 	u := SnowUser{}
 
-	query := "u_objectguid=" + objectguid + "^" + "employee_number=" + empId
+	query := "u_objectguid=" + objectguid + "^OR" + "employee_number=" + empId
 
 	encodedQuery := url.QueryEscape(query)	
 
