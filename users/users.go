@@ -591,6 +591,8 @@ func (s *UserClient) ComboSearch(objectguid, empId string) (SnowUser, error) {
 
 	url := s.Instance + "/api/now/table/sys_user?sysparm_query=" + query
 
+	fmt.Println(url)
+
 	// Create a new HTTP request
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
