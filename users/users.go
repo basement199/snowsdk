@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"net/url"
 )
 
 type UHrBusinessPartner struct {
@@ -587,11 +588,10 @@ func (s *UserClient) ComboSearch(objectguid, empId string) (SnowUser, error) {
 
 	query := "u_objectguid=" + objectguid + "^" + "employee_number=" + empId
 
-	fmt.Println(query)
+	encodedQuery := url.QueryEscape(query)	
 
-	url := s.Instance + "/api/now/table/sys_user?sysparm_query=" + query
+	url := s.Instance + "/api/now/table/sys_user?sysparm_query=" + encodedQuery
 
-	fmt.Println(url)
 
 	// Create a new HTTP request
 	req, err := http.NewRequest("GET", url, nil)
