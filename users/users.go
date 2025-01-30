@@ -3,8 +3,10 @@ package users
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
 	"net/url"
+	"os"
 )
 
 type UHrBusinessPartner struct {
@@ -588,10 +590,9 @@ func (s *UserClient) ComboSearch(objectguid, empId string) (SnowUser, error) {
 
 	query := "u_objectguid=" + objectguid + "^OR" + "employee_number=" + empId
 
-	encodedQuery := url.QueryEscape(query)	
+	encodedQuery := url.QueryEscape(query)
 
 	url := s.Instance + "/api/now/table/sys_user?sysparm_query=" + encodedQuery
-
 
 	// Create a new HTTP request
 	req, err := http.NewRequest("GET", url, nil)
@@ -611,6 +612,11 @@ func (s *UserClient) ComboSearch(objectguid, empId string) (SnowUser, error) {
 		return u, err
 	}
 	defer resp.Body.Close()
+
+	_, err = io.Copy(os.Stdout, resp.Body)
+	if err != nil {
+		fmt.Println(err)
+	}
 
 	err = json.NewDecoder(resp.Body).Decode(&u)
 
