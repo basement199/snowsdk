@@ -1,4 +1,4 @@
-package users
+package snowusers
 
 import (
 	"encoding/json"

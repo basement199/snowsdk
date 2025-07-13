@@ -1,4 +1,4 @@
-package incidents
+package snowincidents
 
 import (
 	"bytes"
