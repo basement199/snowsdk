@@ -181,7 +181,7 @@ type SnowUser struct {
 	Result []struct {
 		CalendarIntegration           string             `json:"calendar_integration"`
 		UResourceEnded                string             `json:"u_resource_ended"`
-		U_userprincipalname            string             `json:"u_userprincipalname"`
+		Uuserprincipalname            string             `json:"u_userprincipalname"`
 		SysUpdatedOn                  string             `json:"sys_updated_on"`
 		Building                      Building           `json:"building"`
 		UMailCounter                  string             `json:"u_mail_counter"`
